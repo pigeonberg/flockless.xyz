@@ -1,0 +1,186 @@
+<!doctype html><html lang=en><head><title>Flockless: ./blog/20260802a/index.txt</title><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Pigeon's website"><meta name=theme-color content="#000000"><link rel=stylesheet href=/assets/css.css><link rel=icon href=/assets/ico.ico><link rel=alternate type=application/atom+xml title=Flockless href=/atom.xml></head><body><pre>
+
+/<a href=/>HOME</a>/                                           /<a href=https://hotlinewebring.club/pigeon/previous>prev</a>/ /<a href=https://hotlinewebring.club/>Hotline Webring</a>/ /<a href=https://hotlinewebring.club/pigeon/next>next</a>/
+
+
+</pre><style>.img-preview{position:relative;anchor-name:--preview-anchor}.img-preview img{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:10px;max-width:90vw;max-height:80vh;width:auto;height:auto;border:1px solid #fff;background:#000;z-index:1000}@supports(position-anchor:--preview-anchor){.img-preview img{position-anchor:--preview-anchor;position-area:top center;position-try-fallbacks:flip-inline;bottom:unset;left:unset;transform:none}}.img-preview:hover img{display:block}</style><pre>
+Dotfiles Management                                                   2026-08-02
+________________________________________________________________________________
+
+This guide describes how I manage my dotfiles. It is heavily inspired by Drew
+DeVault's approach, but I have adapted it over the years to better suit my own
+workflow.
+
+Drew's blog on dotfiles: <a href=https://drewdevault.com/2019/12/30/dotfiles.html>https://drewdevault.com/2019/12/30/dotfiles.html</a>
+
+--- <span id=001>[<a class=t href=#001>001</a>]</span> Setup Options --------------------------------------------------------
+
+ In this setup, the $HOME directory is a Git repository. This guide assumes you
+ are starting with an empty $HOME and have basic familiarity with operating a
+ UNIX-like system. On a real system you would typically move existing files out
+ of the way first, or use an existing repository as described below.
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ cd $HOME; git init                                                       |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ Alternatively, you can use an existing repository. This is preferable if you
+ already have dotfiles backed up using this or a similar layout and want to
+ deploy them to a new environment. A plain git clone refuses to write into a
+ directory that is not empty, so initialise the repository in place and fetch
+ into it instead:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ cd $HOME                                                                 |
+ | $ git init                                                                 |
+ | $ git remote add origin <a href=https://codeberg.org/pigeon/dotfiles>https://codeberg.org/pigeon/dotfiles</a>               |
+ | $ git fetch origin                                                         |
+ | $ git checkout -f master                                                   |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ The -f option overwrites any local files that clash with tracked ones, so back
+ up anything you care about first.
+
+ In practice, I always use my existing dotfiles repository on a new machine.
+ The git init route above is there to teach the underlying idea, as you will
+ only ever run it once: the first time you start tracking your dotfiles.
+
+
+--- <span id=002>[<a class=t href=#002>002</a>]</span> Ignore Everything by Default -----------------------------------------
+
+ By default this setup would track every file in your $HOME directory. To avoid
+ this, add a rule that ignores everything unless it is explicitly tracked. Do
+ this straight after creating the repository:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ echo "*" >> $HOME/.git/info/exclude                                      |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ I find this better than a .gitignore file in the root of the repository, as
+ that would be one extra file polluting /home/$USER/
+
+
+--- <span id=003>[<a class=t href=#003>003</a>]</span> Adding Dotfiles ------------------------------------------------------
+
+ I do not limit this to shell and editor configs. Pretty much anything
+ config-related gets tracked this way, including River, Kakoune and whatever
+ else I have tweaked. If it is a file I would be annoyed to lose or retype on a
+ new machine, it goes in.
+
+ Force-add the files you want to track:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git add -f .bashrc                                                       |
+ | $ git commit -m "initial commit"                                           |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ If you started with git init, point the repository at your remote and push for
+ the first time:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git remote add origin <a href=https://codeberg.org/pigeon/dotfiles>https://codeberg.org/pigeon/dotfiles</a>               |
+ | $ git push -u origin HEAD                                                  |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ Repeat for other files:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git add -f .config/river/config                                          |
+ | $ git add -f .config/kakoune/kakrc                                         |
+ | $ git add -f .profile                                                      |
+ | $ git commit -m "add more files"                                           |
+ | $ git push                                                                 |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ I also use shell scripts to track things related to / or the root user. One
+ automatically backs up a list of my manually installed packages to
+ $HOME/.local/packages, and another does the same for my init services and user
+ groups. This is handy for backing up system-level settings on a single-user
+ system.
+
+
+--- <span id=004>[<a class=t href=#004>004</a>]</span> Hiding Files ---------------------------------------------------------
+
+ I mainly use this for README and LICENSE. I want them visible when browsing
+ the repository on Codeberg, but they have no reason to sit in $HOME cluttering
+ things day to day.
+
+ For files you want Git to ignore locally:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git update-index --assume-unchanged README LICENSE                       |
+ | $ rm README LICENSE                                                        |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ Check hidden files:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git ls-files -v | grep "^h"                                              |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+ Restore them later:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git update-index --no-assume-unchanged README LICENSE                    |
+ | $ git restore README LICENSE                                               |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+
+--- <span id=005>[<a class=t href=#005>005</a>]</span> Untracking a File Without Removing It --------------------------------
+
+ Sometimes you want Git to stop tracking a file but keep it sitting in $HOME
+ exactly as it is, with no deletion involved. This is different from hiding a
+ file with assume-unchanged, since that keeps the file tracked and just tells
+ Git to stop checking it for changes. Untracking actually removes it from the
+ repository's index while leaving the file on disk untouched.
+
+ Untrack a file, keeping it in the working tree:
+
+ +----------------------------------------------------------------------------+
+ |                                                                            |
+ | $ git rm --cached .bashrc                                                  |
+ | $ git commit -m "untrack .bashrc"                                          |
+ | $ git push                                                                 |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+
+--- <span id=006>[<a class=t href=#006>006</a>]</span> Final Thoughts -------------------------------------------------------
+
+ That is the whole method: a $HOME repository, everything ignored by default,
+ and files force-added one at a time as you decide they are worth tracking. It
+ does not require extra tooling such as stow, and it scales fine whether you
+ are tracking three files or thirty. I prefer this over the popular
+ bare-repository approach because it behaves like a normal Git repository,
+ requires no shell aliases and works with standard Git commands.
+
+ If you want to see it in practice rather than just in theory, my own dotfiles
+ are public and follow this exact layout:
+
+ <a href=https://codeberg.org/pigeon/dotfiles>https://codeberg.org/pigeon/dotfiles</a>
+</pre><pre>
+
+________________________________________________________________________________
+
+
+Flockless (C) 2021-2026 by Joseph is licensed under CC BY-SA 4.0
+
+</pre></body></html>
