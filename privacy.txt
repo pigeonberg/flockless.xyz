@@ -1,0 +1,39 @@
++------------------------------------------------------------------------------+
+|                                                                              |
+|     PRIVACY POLICY                                                           |
+|     Last updated 2026-11-12                                                  |
+|                                                                              |
++------------------------------------------------------------------------------+
+
+
+- [001] FIRST PARTY
+________________________________________________________________________________
+
+This website does not track you. It has no analytics, no cookies, no adverts,
+no scripts and no forms, and I do not collect or store any information about
+the people who read it.
+
+Every page is plain HTML and CSS with no JavaScript. Pages do not set or read
+cookies, and nothing is loaded from another domain: the styles and images come
+from this site, and the text is shown in fonts already on your own device.
+
+
+- [002] THIRD PARTY
+________________________________________________________________________________
+
+This site is hosted on GitHub Pages, which is run by GitHub. GitHub's
+documentation says that when a GitHub Pages site is visited, the visitor's IP
+address is logged and stored for security purposes, whether or not the visitor
+is signed into GitHub.
+
+That logging is done by GitHub, not by me. The page below, from GitHub's
+documentation, describes it and links to GitHub's privacy statement:
+
+1. https://docs.github.com/en/articles/about-github-pages
+
+
+- [003] CHANGES
+________________________________________________________________________________
+
+If this policy changes, the new version will replace this page and the date at
+the top will be updated.
