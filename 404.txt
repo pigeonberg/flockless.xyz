@@ -1,0 +1,10 @@
+         +----------------+
+         | PAGE NOT FOUND |
+         +----------------+
+                 \   ^__^
+                  \  (xx)\_______
+                     (__)\       )\/\
+                      U  ||----w |
+                         ||     ||
+
+Archive: https://codeberg.org/pigeon/flockless

@@ -1,0 +1,24 @@
+- [001] WELCOME
+________________________________________________________________________________
+
+Coming from another webring? Welcome. My main page is https://flockless.xyz/
+
+> Why not link the webrings in the footer?
+
+* Some webrings do not work with subdomains, and whitelisting every subdomain
+  for every webring would not scale.
+* A dozen webrings in the footer of every page would be cluttered.
+
+
+- [002] WEBRINGS
+________________________________________________________________________________
+
+These are the webrings I am a member of:
+
++------------------------------------------------------------------------------+
+|                                 WEBRING LIST                                 |
++-------------------------+-------------------------+--------------------------+
+|                         |                         |                          |
+| <a href=https://hotlinewebring.club/pigeon/previous>Previous</a>                | <a href=https://hotlinewebring.club/>Hotline Webring</a>         | <a href=https://hotlinewebring.club/pigeon/next>Next</a>                     |
+|                         |                         |                          |
++-------------------------+-------------------------+--------------------------+

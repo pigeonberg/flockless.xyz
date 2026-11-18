@@ -1,0 +1,39 @@
++------------------------------------------------------------------------------+
+|                                                                              |
+|     PRIVACY POLICY                                                           |
+|     Last updated 2026-11-18                                                  |
+|                                                                              |
++------------------------------------------------------------------------------+
+
+
+- [001] FIRST PARTY
+________________________________________________________________________________
+
+These websites do not track you. They have no analytics, no cookies and no
+forms, and I do not collect or store any information about the people who read
+them. This covers flockless.xyz and media.flockless.xyz.
+
+Every page is plain HTML and CSS with no JavaScript. Pages do not set or read
+cookies. Nothing is loaded from another site: the styles and images come from
+the same site, and the text is shown in fonts already on your own device.
+
+
+- [002] THIRD PARTY
+________________________________________________________________________________
+
+These sites are hosted on GitHub Pages, which is run by GitHub. GitHub's
+documentation says that when a GitHub Pages site is visited, the visitor's IP
+address is logged and stored for security purposes, whether or not the visitor
+is signed into GitHub.
+
+That logging is done by GitHub, not by me. The page below, from GitHub's
+documentation, describes it and links to GitHub's privacy statement:
+
+1. https://docs.github.com/en/articles/about-github-pages
+
+
+- [003] CHANGES
+________________________________________________________________________________
+
+If this policy changes, the new version will replace this page and the date at
+the top will be updated.

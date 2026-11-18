@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Flockless</title>
+	<subtitle>Pigeon's website</subtitle>
+	<link rel="self" href="https://flockless.xyz/atom.xml" />
+	<link href="https://flockless.xyz/" />
+	<id>https://flockless.xyz/</id>
+	<updated>2026-08-02T00:00:00Z</updated>
+	<author>
+		<name>Joseph</name>
+	</author>
+	<rights>(C) 2021-2026 Joseph, CC BY-SA 4.0</rights>
+	<entry>
+		<title>Dotfiles Management</title>
+		<link href="https://flockless.xyz/blog/20260802a/" />
+		<id>https://flockless.xyz/blog/20260802a/</id>
+		<updated>2026-08-02T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<title>Millenium MPS-450 Review</title>
+		<link href="https://flockless.xyz/blog/20251129a/" />
+		<id>https://flockless.xyz/blog/20251129a/</id>
+		<updated>2025-11-29T00:00:00Z</updated>
+	</entry>
+</feed>
